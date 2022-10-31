@@ -30,7 +30,7 @@ builder.Services.AddSingleton<IConsumer<Null, string>>(x => new ConsumerBuilder<
 
 builder.Services.AddSingleton<IPaymentDetailPublisher, DataPublisher>();
 builder.Services.AddSingleton<IStudentDataConsumer, DataConsumer>();
-builder.Services.AddHostedService<ConsumerServicesBackground>();
+//builder.Services.AddHostedService<ConsumerServicesBackground>();
 
 var app = builder.Build();
 

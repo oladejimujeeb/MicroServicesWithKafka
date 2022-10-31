@@ -14,13 +14,13 @@ namespace StudentApi.BackgroudJob
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            _logger.LogInformation("consuming data");
-            DateTime time = DateTime.Now;
-            
-            using var consumerService = _serviceProvider.CreateScope();
-            var consumer = consumerService.ServiceProvider.GetRequiredService<IStudentDataPublisher>();
-            await consumer.ConsumeDataAsync();
-            _logger.LogInformation("consuming data");
+            while (!stoppingToken.IsCancellationRequested)
+            {
+                using var consumerService = _serviceProvider.CreateAsyncScope();
+                var consumer = consumerService.ServiceProvider.GetRequiredService<IStudentDataPublisher>();
+                await consumer.ConsumeDataAsync();
+                _logger.LogInformation("consuming data");
+            }
         }
-    } 
+    }
 }

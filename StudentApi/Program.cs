@@ -34,7 +34,7 @@ builder.Services.AddSingleton<IProducer<Null, string>>(x => new ProducerBuilder<
 builder.Services.AddSingleton<IConsumer<Null, string>>( x => new ConsumerBuilder<Null, string>(consumerConfig).Build());
 
 builder.Services.AddScoped<IStudentDataPublisher, StudentDataPublisher>();
-builder.Services.AddHostedService<ConsumerBackgroundService>();
+//builder.Services.AddHostedService<ConsumerBackgroundService>();
 
 var app = builder.Build();
 
