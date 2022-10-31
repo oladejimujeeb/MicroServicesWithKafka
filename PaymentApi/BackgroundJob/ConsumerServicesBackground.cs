@@ -14,11 +14,14 @@ namespace PaymentApi.BackgroundJob
         }
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            _logger.LogInformation("consuming data");
-            using var consumerService = _serviceProvider.CreateScope();
-            var consume = consumerService.ServiceProvider.GetRequiredService<IStudentDataConsumer>();
-            var token = new CancellationTokenSource();
-            await consume.ConsumeStudentAsync(token);
+            while (!stoppingToken.IsCancellationRequested)
+            {
+                using var consumerService = _serviceProvider.CreateScope();
+                var consume = consumerService.ServiceProvider.GetRequiredService<IStudentDataConsumer>();
+                var token = new CancellationTokenSource();
+                await consume.ConsumeStudentAsync(token);
+                _logger.LogInformation("consuming data");
+            }
 
         }
     }

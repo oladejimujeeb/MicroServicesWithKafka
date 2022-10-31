@@ -64,7 +64,7 @@ namespace StudentApi.Controllers
             }
             return Ok(payments);
         }
-        [HttpPost("Kafka")]
+        [HttpPost("ConsumerDataandSave")]
         public async Task<IActionResult>RuningKafKa()
         {
             //this method is suppose to be in the background service

@@ -34,7 +34,7 @@ namespace PaymentApi.Controllers
             })
             .ToArray();
         }
-        [HttpPost]
+        [HttpPost("ConsumerDataandMakePayment")]
         public async Task<IActionResult> RunKafKa()
         {
             CancellationTokenSource tokenSource = new CancellationTokenSource();
